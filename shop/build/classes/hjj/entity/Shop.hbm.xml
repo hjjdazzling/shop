@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name = "hjj.entity.Shop" table = "shop" lazy="false">
+		<id name = "id" column = "s_id">
+			<generator class="native"></generator>
+		</id> 
+		<set name = "setGood" cascade="save-update,delete" inverse="true">
+			<key column = "s_id"></key>
+			<one-to-many class = "hjj.entity.Good"></one-to-many>
+		</set>
+		<property name = "username"/>
+		<property name = "password"/>
+		<property name = "phone"/>
+		<property name = "money"/>
+		<property name = "address"/>
+		<property name = "date"/>
+	</class>
+</hibernate-mapping>

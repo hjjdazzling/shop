@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ 	
+	<session-factory>
+		
+		<!-- 2.配置hibernate信息,可有可无 -->
+		<!-- 输出sql语句 -->
+		<property name = "hibernate.show_sql">true</property>
+		<!-- 在不同行显示sql语句 -->
+		<property name = "hibernate.format_sql">true</property>
+		
+		
+		<!-- 配置数据库方言，即使其能够使用特定数据库的语句 -->
+		<property name = "hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		
+		<!-- 设施与本地线程绑定的session -->
+		<property name = "hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</property>
+		
+		
+		<!-- 把映射文件放到核心文件 -->
+		<mapping resource = "hjj/entity/User.hbm.xml"></mapping>
+		<mapping resource = "hjj/entity/Shop.hbm.xml"></mapping>
+		<mapping resource = "hjj/entity/Good.hbm.xml"></mapping>
+		<mapping resource = "hjj/entity/ShopCarRecord.hbm.xml"></mapping>
+		<mapping resource = "hjj/entity/Admin.hbm.xml"></mapping>
+		<mapping resource = "hjj/entity/Deliver.hbm.xml"></mapping>
+		<mapping resource = "hjj/entity/PurchaseRecord.hbm.xml"></mapping>
+		<mapping resource = "hjj/entity/DeliverRecord.hbm.xml"></mapping>
+	</session-factory>
+</hibernate-configuration>

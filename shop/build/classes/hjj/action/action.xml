@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name = "hjj" extends = "struts-default" namespace = "/">
+		<!-- 配置拦截器 -->
+		<interceptors>
+			<interceptor name = "userLoginInteceptor" class = "hjj.interceptor.UserLoginInterceptor"/>
+			<interceptor name = "deliverLoginInteceptor" class = "hjj.interceptor.DeliverLoginIntecerptor"/>
+			<interceptor name = "adminLoginInteceptor" class = "hjj.interceptor.AdminLoginIntecerptor"/>
+			<interceptor name = "shopLoginInteceptor" class = "hjj.interceptor.ShopLoginIntecerptor"/>
+		</interceptors>
+		<action name = "UserAction_*" method = "{1}"  class = "hjj.action.UserAction">
+			<interceptor-ref name = "userLoginInteceptor">
+				<param name = "excludeMethods">login,register</param>
+			</interceptor-ref>
+			<interceptor-ref name = "defaultStack">
+			</interceptor-ref>
+			<result name = "success">/user/select.jsp</result>
+			<result name = "register">/userRegister.jsp</result>
+			<result name = "login">/userLogin.jsp</result>
+			<result name = "quit">/userLogin.jsp</result>
+			<result name = "personData">/user/personData.jsp</result>
+			<result name = "shopCar">/user/shopCar.jsp</result>
+			<result name = "selectPurchaseRecord" type = "dispatcher">/user/selectPurchaseRecord.jsp</result>
+			<result name = "selectDeliverRecord" type = "dispatcher">/user/selectDeliverRecord.jsp</result>
+			<result name = "selectAcceptRecord" type = "dispatcher">/user/selectAcceptRecord.jsp</result>
+			<result name = "selectGoods" type = "dispatcher">/user/selectGoods.jsp</result>
+			<result name = "insertShopCar" type = "dispatcher">/user/selectGoods.jsp</result>
+		</action>
+		
+		<action name = "DeliverAction_*" method = "{1}"  class = "hjj.action.DeliverAction">
+			<interceptor-ref name = "deliverLoginInteceptor">
+				<param name = "excludeMethods">login,register</param>
+			</interceptor-ref>
+			<interceptor-ref name = "defaultStack">
+			</interceptor-ref>
+			<result name = "success">/deliver/select.jsp</result>
+			<result name = "register">/deliverRegister.jsp</result>
+			<result name = "login">/deliverLogin.jsp</result>
+			<result name = "deliver">/deliver/deliver.jsp</result>
+			<result name = "deliverRecord">/deliver/deliverRecord.jsp</result>
+		</action>
+		
+		<action name = "ShopAction_*" method = "{1}"  class = "hjj.action.ShopAction">
+			<interceptor-ref name = "shopLoginInteceptor">
+				<param name = "excludeMethods">login,register</param>
+			</interceptor-ref>
+			<interceptor-ref name = "defaultStack">
+			</interceptor-ref>
+			<result name = "register">/shopRegister.jsp</result>
+			<result name = "login">/shopLogin.jsp</result>
+			<result name = "success">/shop/select.jsp</result>
+			<result name = "shop">/shop/shop.jsp</result>
+			<result name = "selectGood">/shop/selectGood.jsp</result>
+		</action>
+		
+		<action name = "AdminAction_*" method = "{1}"  class = "hjj.action.AdminAction">
+			<interceptor-ref name = "adminLoginInteceptor">
+				<param name = "excludeMethods">login,register</param>
+			</interceptor-ref>
+			<interceptor-ref name = "defaultStack">
+			</interceptor-ref>
+			<result name = "success">/admin/success.jsp</result>
+			<result name = "register">/adminRegister.jsp</result>
+			<result name = "login">/adminLogin.jsp</result>
+		</action>
+	</package>
+</struts>

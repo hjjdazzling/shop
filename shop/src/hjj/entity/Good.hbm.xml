@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name = "hjj.entity.Good" table = "good" lazy="false">
+		<id name = "id" column = "g_id">
+			<generator class="native"></generator>
+		</id> 
+		
+		<many-to-one name="shop" column = "s_id" class = "hjj.entity.Shop"></many-to-one>
+		
+		<set name = "setRecord" cascade="save-update,delete" inverse="true">
+			<key column = "g_id"></key>
+			<one-to-many class = "hjj.entity.ShopCarRecord"></one-to-many>
+		</set>
+		
+		<set name = "setPurchaseRecord" cascade="save-update,delete" inverse="true">
+			<key column = "g_id"></key>
+			<one-to-many class = "hjj.entity.PurchaseRecord"></one-to-many>
+		</set>
+		<property name = "name"/>
+		<property name = "function"/>
+		<property name = "price"/>
+	</class>
+</hibernate-mapping>

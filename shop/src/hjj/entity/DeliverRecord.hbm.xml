@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name = "hjj.entity.DeliverRecord" table = "deliver_record" lazy="false">
+		<id name = "id" column = "id">
+			<generator class="native"></generator>
+		</id> 
+		<many-to-one name = "purchaseRecord" column = "p_id" class = "hjj.entity.PurchaseRecord"></many-to-one>
+		<many-to-one name = "deliver" column = "d_id" class = "hjj.entity.Deliver"></many-to-one>
+		<property name = "type"/>
+		<property name = "targetAddress" column = "target_address"/>
+		<property name = "address"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name = "hjj.entity.User" table = "user" lazy="false">
+		<id name = "id" column = "u_id">
+			<generator class="native"></generator>
+		</id> 
+		
+		<set name = "setRecord" cascade="save-update,delete" inverse="true">
+			<key column = "u_id"></key>
+			<one-to-many class = "hjj.entity.ShopCarRecord"></one-to-many>
+		</set>
+		
+		<set name = "setPurchaseRecord" cascade="save-update,delete" inverse="true">
+			<key column = "u_id"></key>
+			<one-to-many class = "hjj.entity.PurchaseRecord"></one-to-many>
+		</set>
+		<property name = "username"/>
+		<property name = "password"/>
+		<property name = "phone"/>
+		<property name = "money"/>
+		<property name = "date"/>
+		<property name = "address"/>
+	</class>
+</hibernate-mapping>
