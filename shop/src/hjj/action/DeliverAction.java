@@ -147,7 +147,7 @@ public class DeliverAction {
 			request.setAttribute("error", "两次输入的密码不一致");
 			return "register";
 		}
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mmss");
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String date = df.format(new Date());
 		deliver.setDate(date);
 		try {

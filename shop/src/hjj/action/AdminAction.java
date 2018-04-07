@@ -67,7 +67,7 @@ public class AdminAction {
 		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mmss");
 		String date = df.format(new Date());
-		admin.setDate(admin.getDate());
+		admin.setDate(date);
 		try {
 			if (adminService.insert(admin)) {
 				HttpSession session = request.getSession();
