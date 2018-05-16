@@ -7,10 +7,16 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.servlet.http.HttpSessionActivationListener;
+
 import org.springframework.stereotype.Component;
 
 @Component(value="deliver")
-public class Deliver extends Person {
+public class Deliver extends Person implements HttpSessionActivationListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Set<DeliverRecord> setDeliverRecord = new HashSet<>();
 	
 	

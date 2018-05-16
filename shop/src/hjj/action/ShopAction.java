@@ -4,8 +4,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -158,8 +160,20 @@ public class ShopAction {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
 		if(shopService.login(shop)) {
+			ServletContext application = request.getServletContext();
+			Map<String, HttpSession> loginMap = (Map<String, HttpSession>) application.getAttribute("deliverLoginMap");
+			
+			if(loginMap.containsKey(shop.getUsername())) {
+				HttpSession s = loginMap.get(shop.getUsername());
+				s.invalidate();
+				//从列表中删除
+				loginMap.remove(shop.getUsername());
+			}
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("shop", shop);
+			//添加
+			loginMap.put(shop.getUsername(), session);
 			return "success";
 		} else {
 			

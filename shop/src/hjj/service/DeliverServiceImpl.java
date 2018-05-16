@@ -13,7 +13,7 @@ import hjj.entity.DeliverRecord;
 
 @Transactional
 @Service(value = "deliverService")
-public class DeliverServiceImpl {
+public class DeliverServiceImpl implements DeliverService {
 	@Resource(name = "deliverDao")
 	private DeliverDao deliverDao;
 	

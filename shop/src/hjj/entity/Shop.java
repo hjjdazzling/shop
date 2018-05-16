@@ -7,7 +7,13 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Shop extends Person implements Serializable {
+import javax.servlet.http.HttpSessionActivationListener;
+
+public class Shop extends Person implements Serializable,HttpSessionActivationListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Set<Good> setGood = new HashSet<>();
 	
 	public Set<Good> getSetGood() {

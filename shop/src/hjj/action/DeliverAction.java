@@ -4,8 +4,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -107,8 +109,19 @@ public class DeliverAction {
 		HttpServletRequest request = ServletActionContext.getRequest();
 
 		if (deliverService.select(deliver)) {
+			ServletContext application = request.getServletContext();
+			Map<String, HttpSession> loginMap = (Map<String, HttpSession>) application.getAttribute("deliverLoginMap");
+			
+			if(loginMap.containsKey(deliver.getUsername())) {
+				HttpSession s = loginMap.get(deliver.getUsername());
+				s.invalidate();
+				//从列表中删除
+				loginMap.remove(deliver.getUsername());
+			}
 			HttpSession session = request.getSession();
 			session.setAttribute("deliver", deliver);
+			//添加
+			loginMap.put(deliver.getUsername(), session);
 			return "success";
 		} else {
 			request.setAttribute("error", "登录名或者密码错误");

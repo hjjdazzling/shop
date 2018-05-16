@@ -10,12 +10,12 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 
 import hjj.entity.DeliverRecord;
@@ -264,8 +264,20 @@ public class UserAction {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
 		if(userService.select(user)) {
+			ServletContext application = request.getServletContext();
+			Map<String, HttpSession> loginMap = (Map<String, HttpSession>) application.getAttribute("userLoginMap");
+			
+			if(loginMap.containsKey(user.getUsername())) {
+				HttpSession s = loginMap.get(user.getUsername());
+				s.invalidate();
+				//从列表中删除
+				loginMap.remove(user.getUsername());
+			}
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
+			//添加
+			loginMap.put(user.getUsername(), session);
 			return "success";
 		} else {
 			request.setAttribute("error", "登录名或者密码错误");

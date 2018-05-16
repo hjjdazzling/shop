@@ -5,7 +5,13 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Good implements Serializable {
+import javax.servlet.http.HttpSessionActivationListener;
+
+public class Good implements Serializable,HttpSessionActivationListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private String function;

@@ -1,6 +1,14 @@
 package hjj.entity;
 
-public class Person {
+import java.io.Serializable;
+
+import javax.servlet.http.HttpSessionActivationListener;
+
+public class Person implements Serializable,HttpSessionActivationListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int id;
 	protected String username;
 	protected String password;

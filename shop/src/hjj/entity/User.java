@@ -4,7 +4,13 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User extends Person implements Serializable {
+import javax.servlet.http.HttpSessionActivationListener;
+
+public class User extends Person implements Serializable,HttpSessionActivationListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Set<ShopCarRecord> setRecord = new HashSet<>();
 	private Set<PurchaseRecord> setPurchaseRecord = new HashSet<>();
 	

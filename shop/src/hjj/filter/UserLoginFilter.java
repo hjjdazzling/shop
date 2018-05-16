@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -28,11 +29,12 @@ public class UserLoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpSession session = req.getSession();
+		
 		if(session.getAttribute("user") != null) {
 			chain.doFilter(request, response);
 		} else {
 			request.setAttribute("error", "请先登录");
-			request.getRequestDispatcher("/shopLogin.jsp").forward(request, response);
+			request.getRequestDispatcher("/userLogin.jsp").forward(request, response);
 		}
 		
 	}

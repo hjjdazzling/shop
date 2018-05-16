@@ -2,7 +2,13 @@ package hjj.entity;
 
 import java.io.Serializable;
 
-public class ShopCarRecord implements Serializable {
+import javax.servlet.http.HttpSessionActivationListener;
+
+public class ShopCarRecord implements Serializable,HttpSessionActivationListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private int number;
 	private Good good;

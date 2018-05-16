@@ -1,6 +1,14 @@
 package hjj.entity;
 
-public class DeliverRecord {
+import java.io.Serializable;
+
+import javax.servlet.http.HttpSessionActivationListener;
+
+public class DeliverRecord implements Serializable,HttpSessionActivationListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String type;
 	private String address;
