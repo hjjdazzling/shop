@@ -16,9 +16,12 @@
     <filter-name>struts2</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <!-- session的过期时间10分钟-->
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
